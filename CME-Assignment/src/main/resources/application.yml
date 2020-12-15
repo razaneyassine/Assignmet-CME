@@ -1,0 +1,10 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/restaurants
+    username: postgres
+    password: 1234
+    poll-size:
+
+#server:
+#  servlet:
+#    context-path: C:/Users/Razan/Desktop/CME-Assignment/CME-Assignment/src/Images
