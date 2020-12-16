@@ -1,4 +1,4 @@
-package com.example.CMEAssignment.Controller;
+package com.example.CMEAssignment.controller;
 
 
 import com.example.CMEAssignment.model.Category;

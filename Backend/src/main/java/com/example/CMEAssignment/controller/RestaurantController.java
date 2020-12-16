@@ -1,8 +1,7 @@
-package com.example.CMEAssignment.Controller;
+package com.example.CMEAssignment.controller;
 
 
 
-import com.example.CMEAssignment.model.Category;
 import com.example.CMEAssignment.model.Restaurant;
 import com.example.CMEAssignment.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
