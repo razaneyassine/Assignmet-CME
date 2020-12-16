@@ -4,28 +4,11 @@ import axios from 'axios';
 import OutlinedCard from './Card';
 import Grid from '@material-ui/core/Grid';
 import {  makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Snackbar from '@material-ui/core/Snackbar';
 import Pagination from "./Pagination";
-import { FormControl, InputLabel, MenuItem ,Select} from '@material-ui/core';
-// import Button from '@material-ui/core/Button';
-// import { SnackbarProvider, useSnackbar } from 'notistack';
+import { CircularProgress, FormControl, InputLabel, MenuItem ,Select} from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
-
-// function MyApp() {
-//   const { enqueueSnackbar } = useSnackbar();
-
-//   const handleClick = () => {
-//     enqueueSnackbar('Search Field is empty! Insert restaurant name.');
-//   };
-
-
-//   return (
-//     <React.Fragment>
-//       <Button onClick={handleClick}>Show snackbar</Button>
-//     </React.Fragment>
-//   );
-// }
 
 
 const useStyles = makeStyles (theme=>({
@@ -49,7 +32,8 @@ const Restaurants=()=>{
 
   const [search,setInput]=useState("");
   const [filter,setFilter]=useState("");
-  const [category,setCategory]=useState(0);
+  const [open, setOpen] = React.useState(false);
+
 
 
 
@@ -58,8 +42,7 @@ const Restaurants=()=>{
 const handleChange=(e)=>{
   setFilter(e.target.value)
   console.log(filter);
-//  const result= restaurants.filter(restaurant=> restaurant.categoryid = e.target.value)
-// console.log(result);
+
 if(filter != ""){
   axios.get('http://localhost:8080/api/v1/restaurant/filter/'+filter).then(resp=>{
     setRestaurants(resp.data);
@@ -69,13 +52,7 @@ if(filter != ""){
    
 };
 
-// const handleFilter=(name)=>{
-//     axios.get('http://localhost:8080/api/v1/restaurant/filter/'+name).then(resp=>{
-//    setRestaurants(resp.data);
-//    console.log(resp);
-//   })
- 
-// }
+
 
 
 const handleSearchChange=(e)=>{
@@ -88,19 +65,30 @@ const handleSearchChange=(e)=>{
 
 const handleSubmit=(e)=>{
  e.preventDefault();
-//  if(search ===""){
-//   return (
-//     <SnackbarProvider maxSnack={3}>
-//       <MyApp />
-//     </SnackbarProvider>
-//   ); 
-//  }
-//  else{
+ if(search ===""){
+ 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+    <Alert onClose={handleClose} severity="success">
+      This is a success message!
+    </Alert>
+  </Snackbar>
+  ); 
+ }
+ else{
   axios.get(`http://localhost:8080/api/v1/restaurant/search/${search}`).then(resp=>{
     setRestaurants(resp.data);
     console.log(resp);
    })
-//  }
+ }
 
 };
 
@@ -176,17 +164,23 @@ const options = categories.map((option) => {
       </nav>
       </div>
       <br></br>
-            <Grid container spacing={4} className={classes.gridContainer}>
-            {current.map((restaurant)=>
-   
-              <Grid item xs={12} sm={6} key={restaurant.id} >
-              <OutlinedCard data={restaurant} />
-            </Grid>
-            )}
-         </Grid>
-             <br></br>
-         <Pagination restPerPage={restPerPage} total={restaurants.length} paginate={paginate} />
+      {current ? (
+        <div>
+           <Grid container spacing={4} className={classes.gridContainer}>
+           {current.map((restaurant)=>
   
+             <Grid item xs={12} sm={6} key={restaurant.id} >
+             <OutlinedCard data={restaurant} />
+           </Grid>
+           )}
+        </Grid>
+            <br></br>
+        <Pagination restPerPage={restPerPage} total={restaurants.length} paginate={paginate} />
+        </div>
+      ) : (
+        <CircularProgress/>
+      )}
+         
     </>
       
     );

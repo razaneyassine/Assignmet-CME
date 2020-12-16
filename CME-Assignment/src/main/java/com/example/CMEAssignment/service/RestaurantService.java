@@ -28,13 +28,7 @@ public class RestaurantService {
         return restaurantDao.seletAllRestaurants();
     }
 
-//    public Optional<Restaurant> getRestaurantByID(UUID id){
-//        return restaurantDao.selectRestaurantByID(id);
-//    }
-    public int deleteRestaurant(UUID id){
-        return restaurantDao.deleteRestaurantByID(id);
-    }
-    public int addChecked(UUID id,String name){return restaurantDao.insertChecked(id,name);}
+
 
     public List<Category>selectAllCategories(){return restaurantDao.selectAllCategories();}
     public Optional<Category> getCategoryName(int id){return restaurantDao.getCategoryName(id);}

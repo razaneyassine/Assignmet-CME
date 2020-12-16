@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository("postgres")
-public class RestaurantDataAcessService implements com.example.CMEAssignment.dao.RestaurantDao {
+public class DataAcessService implements com.example.CMEAssignment.dao.RestaurantDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public RestaurantDataAcessService(JdbcTemplate jdbcTemplate) {
+    public DataAcessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -42,19 +42,6 @@ public class RestaurantDataAcessService implements com.example.CMEAssignment.dao
          return restaurants;
     }
 
-//    @Override
-//    public Optional<Restaurant> selectRestaurantByID(UUID id) {
-//        String sql="SELECT * FROM restaurant WHERE id=?";
-//        Restaurant restaurant= jdbcTemplate.queryForObject(sql,new Object[]{id},(resultSet,i)-> {
-//            return new Restaurant(  UUID.fromString(resultSet.getString("id")),
-//                    resultSet.getString("Name"),
-//                    Integer.parseInt(resultSet.getString("Category")),
-//                    Float.parseFloat(resultSet.getString("Average")),
-//                    resultSet.getString("Address"),
-//                    resultSet.getString("PhoneNumber"));
-//        });
-//        return Optional.ofNullable(restaurant);
-//    }
 
     @Override
     public List<Category> selectAllCategories() {
@@ -70,7 +57,6 @@ public class RestaurantDataAcessService implements com.example.CMEAssignment.dao
     public Optional<Category> getCategoryName(int id) {
         String sql="SELECT name FROM category WHERE id=?";
         Category category=jdbcTemplate.queryForObject(sql,new Object[]{id},((resultSet, i) -> {
-            System.out.println(resultSet.getString("name"));
             return new Category(id,resultSet.getString("Name"));
 
 
@@ -78,19 +64,7 @@ public class RestaurantDataAcessService implements com.example.CMEAssignment.dao
         return Optional.ofNullable(category);
     }
 
-    @Override
-    public int insertChecked(UUID id,String name) {
-        String sql="INSERT INTO checked (name,restaurantid) VALUES (?,?)";
-        jdbcTemplate.update(sql,new Object[]{name,id});
-        return 1;
-    }
 
-    @Override
-    public int deleteRestaurantByID(UUID id) {
-        String sql="DELETE FROM checked WHERE restaurantid= ?";
-        jdbcTemplate.update(sql,new Object[]{id});
-        return 1;
-    }
 
     @Override
     public List<Restaurant> selectAllChecked() {

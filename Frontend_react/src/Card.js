@@ -16,14 +16,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Checked from "./Checked";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import r1 from './r1.svg'
 
 
 
 const useStyles = makeStyles((theme)=>({
   root: {
     maxWidth: 345,
-    // backgroundColor:theme.palette.info.light,
+  
   },
   media: {
     height: 140,

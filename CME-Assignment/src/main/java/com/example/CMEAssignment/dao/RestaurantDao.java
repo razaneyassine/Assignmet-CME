@@ -15,11 +15,9 @@ public interface RestaurantDao {
     }
 
     List<Restaurant>seletAllRestaurants();
-//    Optional<Restaurant>selectRestaurantByID(UUID id);
-    int deleteRestaurantByID(UUID id);
+
     List<Category>selectAllCategories();
     Optional<Category> getCategoryName(int id);
-    int insertChecked(UUID id,String name);
     List<Restaurant>selectAllChecked();
     int updateRestaurantByID(UUID id,String date);
     int updateRestaurantFalse(UUID id,String date);

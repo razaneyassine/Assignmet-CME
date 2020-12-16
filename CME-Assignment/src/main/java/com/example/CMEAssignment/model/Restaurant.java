@@ -15,9 +15,9 @@ public class Restaurant {
     private float Average;
     private String Address;
     private String PhoneNumber;
-    private boolean checked;
-    private String checked_at;
-    private String path;
+    private boolean Checked;
+    private String Checked_at;
+    private String Path;
 
 
     public Restaurant(@JsonProperty("id") UUID id,
@@ -26,9 +26,9 @@ public class Restaurant {
                       @JsonProperty("Average") float Average,
                       @JsonProperty("Address") String Address,
                       @JsonProperty("PhoneNumber") String PhoneNumber,
-                      @JsonProperty("Checked") boolean checked,
-                      @JsonProperty("Checked_at") String checked_at,
-                      @JsonProperty("path") String path
+                      @JsonProperty("Checked") boolean Checked,
+                      @JsonProperty("Checked_at") String Checked_at,
+                      @JsonProperty("Path") String Path
                       ){
         this.id=id;
         this.Name=Name;
@@ -36,9 +36,9 @@ public class Restaurant {
         this.Address=Address;
         this.Average=Average;
         this.PhoneNumber=PhoneNumber;
-        this.checked=checked;
-        this.checked_at=checked_at;
-        this.path=path;
+        this.Checked=Checked;
+        this.Checked_at=Checked_at;
+        this.Path=Path;
 
     }
 
@@ -96,26 +96,26 @@ public class Restaurant {
     }
 
     public boolean isChecked() {
-        return checked;
+        return Checked;
     }
 
     public void setChecked(boolean checked) {
-        this.checked = checked;
+        this.Checked = checked;
     }
 
     public String getChecked_at() {
-        return checked_at;
+        return Checked_at;
     }
 
     public void setChecked_at(String checked_at) {
-        this.checked_at = checked_at;
+        this.Checked_at = checked_at;
     }
 
     public String getPath() {
-        return path;
+        return Path;
     }
 
     public void setPath(String path) {
-        this.path = path;
+        this.Path = path;
     }
 }

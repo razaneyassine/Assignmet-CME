@@ -1,4 +1,4 @@
-package com.example.CMEAssignment.api;
+package com.example.CMEAssignment.Controller;
 
 
 
@@ -26,8 +26,6 @@ public class RestaurantController {
         restaurantService.addRestaurant(restaurant);
     }
 
-//    @PostMapping(path="{id}/{name}")
-//    public void addChecked(@PathVariable UUID id,@PathVariable String name){restaurantService.addChecked(id,name);}
 
     @GetMapping
     public List<Restaurant> getAllRestaurants(){
@@ -35,23 +33,11 @@ public class RestaurantController {
     }
 
 
-//    @GetMapping(path="{id}")
-//    public Restaurant getRestaurantByID(@PathVariable("id") UUID id){
-//        return restaurantService.getRestaurantByID(id)
-//                .orElse(null);
-//    }
-
-    @DeleteMapping(path="{id}")
-    public void deleteRestaurantByID(@PathVariable("id") UUID id){
-        restaurantService.deleteRestaurant(id);
-    }
 
     @PutMapping(path = "/true/{id}")
     public void updateRestaurantById(@PathVariable("id") UUID id){
         Date date1 = new Date();
         String date=""+date1;
-        System.out.println(date);
-
         restaurantService.updateRestaurantByID(id,date);
     }
 
@@ -61,10 +47,6 @@ public class RestaurantController {
         restaurantService.updateRestaurantFalse(id,date);
     }
 
-    @GetMapping(path="/categories")
-    public List<Category> selectAllCategories(){
-        return restaurantService.selectAllCategories();
-    }
 
     @GetMapping(path="/checked")
     public List<Restaurant> selectAllChecked(){
@@ -81,7 +63,5 @@ public class RestaurantController {
         return restaurantService.FilterRestaurants(filter);
     }
 
-    @GetMapping(path="/{id}")
-    public Category getCategoryName(@PathVariable("id") int id){return restaurantService.getCategoryName(id).orElse(null);}
 
 }
