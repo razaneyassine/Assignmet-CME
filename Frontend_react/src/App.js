@@ -77,8 +77,8 @@ const handleSubmit=(e)=>{
 
   return (
     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-    <Alert onClose={handleClose} severity="success">
-      This is a success message!
+    <Alert onClose={handleClose} severity="error">
+      The search field in empty!
     </Alert>
   </Snackbar>
   ); 
